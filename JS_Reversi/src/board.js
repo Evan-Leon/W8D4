@@ -136,7 +136,19 @@ Board.prototype.validMove = function (pos, color) {
  * Throws an error if the position represents an invalid move.
  */
 Board.prototype.placePiece = function (pos, color) {
+  if (!this.validMove(pos, color)) throw Error("Invalid move!"); 
+  let positionsToF = [];
+  let binded = this._positionsToFlip.bind(this);
+  let binded2 = this.getPiece.bind(this) 
   
+  Board.DIRS.forEach( function (dir) {
+    let moves = binded(pos, color, dir)
+    positionsToF = positionsToF.concat(moves)
+  }
+  positionsToF.forEach( function (pos){
+    let pees = binded2(pos);
+    pees.piecesToF
+  })
 };
 
 /**
